@@ -1,5 +1,5 @@
 import React from 'react'
-import SoccerTeamLists from './TeamList'
+import { SoccerTeamLists } from './components/TeamList';
 import './App.css'
 
 function App() {
