@@ -60,6 +60,37 @@ button:focus-visible {
     border: 2px solid #59100a;
 }
 
+.main-board {
+    display: flex;
+}
+
+.list-title {
+    margin: 0;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.new-list {
+    margin: 0.5rem;
+    border: 1px solid white;
+    padding: 0.6rem 1rem;
+    border-radius: 1rem;
+}
+
+.new-list ul li {
+    padding: 0;
+    list-style-type: none;
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
