@@ -1,6 +1,4 @@
-import React from 'react';
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
-import AddIcon from '../assets/add.png'
 import AddPlayerIcon from '../assets/add-user.png'
 import DeleteIcon from '../assets/delete.png'
 import EditIcon from '../assets/edit.png'

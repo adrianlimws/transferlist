@@ -1,6 +1,6 @@
 // viewmodels/SoccerTeamListsViewModel.ts
 import { useState } from 'react'
-import { TeamList, Player } from '../models/Types'
+import { TeamList } from '../models/Types'
 
 export function useSoccerTeamListsViewModel() {
     const [lists, setLists] = useState<TeamList[]>([])

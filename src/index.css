@@ -57,13 +57,20 @@ button:focus-visible {
 }
 
 .input-text {
-    padding: 0.6rem;
+    padding: 0 2rem;
     border-radius: 5px;
 }
 
 .main-board {
     display: flex;
     margin-top: 1rem;
+}
+
+.new-list {
+    margin: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 2px 1px #a1a1a1;
 }
 
 .create-list-form {
@@ -108,13 +115,6 @@ button:focus-visible {
 
 .list-buttons button {
     padding: 0.2em 0.5em;
-}
-
-.new-list {
-    margin: 0.5rem;
-    border: 1px solid #213547;
-    padding: 0.6rem 1rem;
-    border-radius: 1rem;
 }
 
 @media (prefers-color-scheme: light) {

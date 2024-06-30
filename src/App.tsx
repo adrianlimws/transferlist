@@ -1,4 +1,3 @@
-import React from 'react'
 import { SoccerTeamLists } from './components/TeamList';
 import './App.css'
 
