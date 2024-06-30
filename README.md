@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# Transfer List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Problem
 
-Currently, two official plugins are available:
+Every transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers in terms of current market trends/rumors. There isn't an app that will do this easily apart from using a spreadsheet or a kanban board app.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Solution
 
-## Expanding the ESLint configuration
+A simple way to create multiple list where players can be dragged and dropped as new update on individual players gets posted on the news.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Planned Features
 
-- Configure the top-level `parserOptions` property like this:
+-   Create/Rename list
+-   Add player name, position, market value, asking price, release clause
+-   Ability to drag and drop player from one list to another freely
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Advanced Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+-   Pulling data from Transfermarket to populate the player details
