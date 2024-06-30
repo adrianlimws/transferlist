@@ -37,11 +37,10 @@ h1 {
 button {
     border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
+    padding: 0.5em 1em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
 }
@@ -64,8 +63,13 @@ button:focus-visible {
     display: flex;
 }
 
+.create-list-form {
+    display: flex;
+    gap: 5px;
+}
+
 .list-title {
-    margin: 0;
+    margin: 0.5rem 0;
 }
 
 .list-header {
@@ -76,7 +80,17 @@ button:focus-visible {
 
 .list-buttons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
+}
+
+.list-buttons button {
+    padding: 0.2em 0.5em;
+}
+
+.add-list img,
+.list-buttons img {
+    width: 24px;
+    height: 24px;
 }
 
 .new-list {
@@ -86,9 +100,11 @@ button:focus-visible {
     border-radius: 1rem;
 }
 
-.new-list ul li {
-    padding: 0;
+ul li {
     list-style-type: none;
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
 }
 
 @media (prefers-color-scheme: light) {

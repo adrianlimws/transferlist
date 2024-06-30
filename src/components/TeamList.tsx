@@ -1,12 +1,17 @@
 import React from 'react';
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
+import AddIcon from '../assets/add.png'
+import AddUserIcon from '../assets/add-user.png'
+import DeleteIcon from '../assets/delete.png'
+import EditIcon from '../assets/edit.png'
 
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
 
     return (
         <>
-            <form onSubmit={(e) => { e.preventDefault(); vm.addList(); }}>
+            <form className='create-list-form'
+                onSubmit={(e) => { e.preventDefault(); vm.addList(); }}>
                 <input
                     type="text"
                     className='input-text'
@@ -18,7 +23,7 @@ export function SoccerTeamLists() {
                     placeholder="Enter list name"
                 />
                 {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
-                <button type="submit">Create New List</button>
+                <button className="add-list" type="submit"><img src={AddIcon} /></button>
             </form>
 
             <div className='main-board'>
@@ -42,13 +47,16 @@ export function SoccerTeamLists() {
                             <div className="list-header">
                                 <h2 className='list-title'>{list.name}</h2>
                                 <div className="list-buttons">
-                                    <button onClick={() => vm.startRenameList(listIndex)}>Rename List</button>
+                                    <button onClick={() => vm.startRenameList(listIndex)}>
+                                        <img src={EditIcon} />
+                                    </button>
                                     <button onClick={() => {
                                         if (window.confirm('Are you sure you want to delete this list?')) {
                                             vm.deleteList(listIndex);
                                         }
-                                    }}>Delete List</button>
-                                    <button onClick={() => vm.setActiveListIndex(listIndex)}>Add Player</button>
+                                    }}><img src={DeleteIcon} /></button>
+                                    <button onClick={() => vm.setActiveListIndex(listIndex)}>
+                                        <img src={AddUserIcon} /> </button>
                                 </div>
                             </div>
                         )}
