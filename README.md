@@ -2,11 +2,11 @@
 
 ## Problem
 
-Every transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers in terms of current market trends/rumors. There isn't an app that will do this easily apart from using a spreadsheet or a kanban board app.
+Every transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers for their supported teams by following the current market trends/rumors on target players. Apart from using a spreadsheet or a kanban board app there isn't a specific app that support this form or organisation.
 
 ## Solution
 
-A simple way to create multiple list where players can be dragged and dropped as new update on individual players gets posted on the news.
+A simple way to create multiple list where player's info can be displayed and organised.
 
 ## Planned Features
 
