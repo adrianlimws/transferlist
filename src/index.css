@@ -63,6 +63,7 @@ button:focus-visible {
 
 .main-board {
     display: flex;
+    margin-top: 1rem;
 }
 
 .create-list-form {
@@ -92,10 +93,10 @@ button:focus-visible {
 .btn-edit {
     background-color: #80c4e9;
 }
-.btn-edit img,
-.btn-delete img {
-    width: 24px;
-    height: 24px;
+
+.list-buttons img {
+    width: 32px;
+    height: 32px;
 }
 
 .btn-delete {

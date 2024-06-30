@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
 import AddIcon from '../assets/add.png'
-import AddUserIcon from '../assets/add-user.png'
+import AddPlayerIcon from '../assets/add-user.png'
 import DeleteIcon from '../assets/delete.png'
 import EditIcon from '../assets/edit.png'
 
@@ -52,16 +52,16 @@ export function SoccerTeamLists() {
 
                                 <div className="list-buttons">
                                     <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
-                                        Rename List
+                                        <img src={EditIcon} />
                                     </button>
                                     <button className='btn-delete' onClick={() => {
                                         if (window.confirm('Are you sure you want to delete this list?')) {
                                             vm.deleteList(listIndex);
                                         }
-                                    }}>Delete List</button>
+                                    }}><img src={DeleteIcon} /></button>
 
                                     <button className='btn-add-player' onClick={() => vm.setActiveListIndex(listIndex)}>
-                                        Add Player </button>
+                                        <img src={AddPlayerIcon} /> </button>
                                 </div>
                             </div>
                         )}
