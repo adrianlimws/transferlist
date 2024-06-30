@@ -71,10 +71,10 @@ export function SoccerTeamLists() {
                         </ul>
 
                         {vm.activeListIndex === listIndex && (
-                            <form onSubmit={(e) => { e.preventDefault(); vm.addPlayer(); }}>
+                            <form className='add-player-form' onSubmit={(e) => { e.preventDefault(); vm.addPlayer(); }}>
                                 <input
                                     type="text"
-                                    className='input-text'
+                                    className='input-add-player'
                                     value={vm.newPlayerName}
                                     onChange={(e) => {
                                         vm.setNewPlayerName(e.target.value);
@@ -85,7 +85,7 @@ export function SoccerTeamLists() {
                                 {vm.errors.newPlayerName && <p style={{ color: 'red' }}>{vm.errors.newPlayerName}</p>}
                                 <input
                                     type="text"
-                                    className='input-text'
+                                    className='input-add-player'
                                     value={vm.newPlayerPosition}
                                     onChange={(e) => {
                                         vm.setNewPlayerPosition(e.target.value);
@@ -94,8 +94,9 @@ export function SoccerTeamLists() {
                                     placeholder="Enter player position"
                                 />
                                 {vm.errors.newPlayerPosition && <p style={{ color: 'red' }}>{vm.errors.newPlayerPosition}</p>}
-                                <button type="submit">Add Player</button>
-                                <button type="button" onClick={() => vm.setActiveListIndex(null)}>Cancel</button>
+                                <button className='btn-add-player' type="submit">Add Player</button>
+                                <button className='btn-cancel' type="button" onClick={() => vm.setActiveListIndex(null)}>Cancel</button>
+
                             </form>
                         )}
                     </div>
