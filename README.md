@@ -13,6 +13,7 @@ A simple way to create multiple list where players can be dragged and dropped as
 -   Create/Rename list
 -   Add player name, position, market value, asking price, release clause
 -   Ability to drag and drop player from one list to another freely
+-   Save list locally and export data for sharing purposes or onto another device
 
 ## Advanced Features
 
