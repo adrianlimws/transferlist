@@ -61,8 +61,10 @@ button:focus-visible {
     border-radius: 5px;
 }
 
-.input-add-player {
+.input-add-player,
+.input-rename {
     padding: 1rem 2rem;
+    border-radius: 5px;
 }
 
 .main-board {
@@ -78,7 +80,8 @@ button:focus-visible {
 }
 
 .create-list-form,
-.add-player-form {
+.add-player-form,
+.list-name-form {
     display: flex;
     gap: 5px;
 }
@@ -104,21 +107,22 @@ button:focus-visible {
     gap: 5px;
 }
 
-.btn-edit {
-    background-color: #80c4e9;
-}
-
-.list-buttons img {
+.list-buttons img,
+.add-player-form img,
+.list-name-form img {
     width: 32px;
     height: 32px;
 }
 
+.btn-edit {
+    background-color: #56c0f9;
+}
 .btn-delete,
 .btn-cancel {
-    background-color: #bc7474;
+    background-color: #df4b4b;
 }
 .btn-add-player {
-    background-color: #8ad0ad;
+    background-color: #5ae19d;
 }
 
 .list-buttons button {

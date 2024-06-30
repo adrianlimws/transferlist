@@ -2,6 +2,9 @@ import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
 import AddPlayerIcon from '../assets/add-user.png'
 import DeleteIcon from '../assets/delete.png'
 import EditIcon from '../assets/edit.png'
+import AddPlayerToListIcon from '../assets/add-player.png'
+import CancelIcon from '../assets/cancel.png'
+import SaveIcon from '../assets/save.png'
 
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
@@ -31,10 +34,10 @@ export function SoccerTeamLists() {
                 {vm.lists.map((list, listIndex) => (
                     <div className="new-list" key={listIndex}>
                         {vm.renameListIndex === listIndex ? (
-                            <form onSubmit={(e) => { e.preventDefault(); vm.submitRenameList(); }}>
+                            <form className='list-name-form' onSubmit={(e) => { e.preventDefault(); vm.submitRenameList(); }}>
                                 <input
-                                    type="text"
-                                    className='input-text'
+                                    type="input-save-list-name"
+                                    className='input-rename'
                                     value={vm.renameListName}
                                     onChange={(e) => {
                                         vm.setRenameListName(e.target.value);
@@ -42,7 +45,7 @@ export function SoccerTeamLists() {
                                     }}
                                 />
                                 {vm.errors.renameListName && <p style={{ color: 'red' }}>{vm.errors.renameListName}</p>}
-                                <button type="submit">Save</button>
+                                <button className='btn-save' type="submit"><img src={SaveIcon} /></button>
                             </form>
                         ) : (
                             <div className="list-header">
@@ -94,8 +97,8 @@ export function SoccerTeamLists() {
                                     placeholder="Enter player position"
                                 />
                                 {vm.errors.newPlayerPosition && <p style={{ color: 'red' }}>{vm.errors.newPlayerPosition}</p>}
-                                <button className='btn-add-player' type="submit">Add Player</button>
-                                <button className='btn-cancel' type="button" onClick={() => vm.setActiveListIndex(null)}>Cancel</button>
+                                <button type="submit"><img src={AddPlayerToListIcon} /></button>
+                                <button type="button" onClick={() => vm.setActiveListIndex(null)}><img src={CancelIcon} /></button>
 
                             </form>
                         )}
