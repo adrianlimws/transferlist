@@ -10,21 +10,24 @@ export function SoccerTeamLists() {
 
     return (
         <>
-            <form className='create-list-form'
-                onSubmit={(e) => { e.preventDefault(); vm.addList(); }}>
-                <input
-                    type="text"
-                    className='input-text'
-                    value={vm.newListName}
-                    onChange={(e) => {
-                        vm.setNewListName(e.target.value);
-                        vm.validateField('newListName', e.target.value);
-                    }}
-                    placeholder="Enter list name"
-                />
-                {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
-                <button className="add-list" type="submit"><img src={AddIcon} /></button>
-            </form>
+            <div className='top-bar'>
+                <h2>Transfer List</h2>
+                <form className='create-list-form'
+                    onSubmit={(e) => { e.preventDefault(); vm.addList(); }}>
+                    <input
+                        type="text"
+                        className='input-text'
+                        value={vm.newListName}
+                        onChange={(e) => {
+                            vm.setNewListName(e.target.value);
+                            vm.validateField('newListName', e.target.value);
+                        }}
+                        placeholder="Enter list name"
+                    />
+                    {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
+                    <button className="add-list" type="submit">Create a New List</button>
+                </form>
+            </div>
 
             <div className='main-board'>
                 {vm.lists.map((list, listIndex) => (
@@ -46,17 +49,19 @@ export function SoccerTeamLists() {
                         ) : (
                             <div className="list-header">
                                 <h2 className='list-title'>{list.name}</h2>
+
                                 <div className="list-buttons">
-                                    <button onClick={() => vm.startRenameList(listIndex)}>
-                                        <img src={EditIcon} />
+                                    <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
+                                        Rename List
                                     </button>
-                                    <button onClick={() => {
+                                    <button className='btn-delete' onClick={() => {
                                         if (window.confirm('Are you sure you want to delete this list?')) {
                                             vm.deleteList(listIndex);
                                         }
-                                    }}><img src={DeleteIcon} /></button>
-                                    <button onClick={() => vm.setActiveListIndex(listIndex)}>
-                                        <img src={AddUserIcon} /> </button>
+                                    }}>Delete List</button>
+
+                                    <button className='btn-add-player' onClick={() => vm.setActiveListIndex(listIndex)}>
+                                        Add Player </button>
                                 </div>
                             </div>
                         )}
