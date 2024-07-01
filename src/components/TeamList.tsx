@@ -75,7 +75,9 @@ export function SoccerTeamLists() {
                                 <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
                                     <img src={EditIcon} />
                                 </button>
-                                <h2 className='list-title'>{list.name}</h2>
+                                <h2 className='list-title'>{list.name}
+                                    <span className="player-count">{list.players.length}</span>
+                                </h2>
 
                                 <div className="list-buttons">
 

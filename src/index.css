@@ -152,6 +152,15 @@ button:focus-visible {
     padding: 10px;
 }
 
+.player-count {
+    font-size: 0.8em;
+    color: #ffffff;
+    background-color: #646cff;
+    padding: 1px 6px;
+    border-radius: 1rem;
+    margin-left: 5px;
+}
+
 .dragging {
     opacity: 0.5;
 }
