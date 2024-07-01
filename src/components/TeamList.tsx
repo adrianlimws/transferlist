@@ -72,12 +72,13 @@ export function SoccerTeamLists() {
                             </form>
                         ) : (
                             <div className="list-header">
+                                <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
+                                    <img src={EditIcon} />
+                                </button>
                                 <h2 className='list-title'>{list.name}</h2>
 
                                 <div className="list-buttons">
-                                    <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
-                                        <img src={EditIcon} />
-                                    </button>
+
                                     <button className='btn-delete' onClick={() => {
                                         if (window.confirm('Are you sure you want to delete this list?')) {
                                             vm.deleteList(listIndex);

@@ -2,7 +2,7 @@
 
 ## Problem
 
-Every transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers for their supported teams by following the current market trends/rumors on target players. Apart from using a spreadsheet or a kanban board app there isn't a specific app that support this form or organisation.
+Every transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers for their supported teams by following the current market trends/rumors on target players.
 
 ## Solution
 

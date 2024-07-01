@@ -76,6 +76,8 @@ button:focus-visible {
 .main-board {
     display: flex;
     margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .new-list {
@@ -120,6 +122,7 @@ button:focus-visible {
 }
 
 .list-buttons img,
+.btn-edit img,
 .add-player-form img,
 .edit-player-form img,
 .list-name-form img,
@@ -134,6 +137,9 @@ button:focus-visible {
 
 .btn-add-player {
     background-color: rgb(142, 223, 255);
+}
+.btn-delete {
+    background-color: rgb(255, 134, 134);
 }
 
 .drag-over {
