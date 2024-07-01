@@ -13,11 +13,11 @@ export function SoccerTeamLists() {
         e.dataTransfer.setData('text/plain', JSON.stringify({ listIndex, playerIndex }));
     };
 
-    const handleDragOver = (e: React.DragEvent<HTMLUListElement>) => {
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLUListElement>, toListIndex: number) => {
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>, toListIndex: number) => {
         e.preventDefault();
         const data = JSON.parse(e.dataTransfer.getData('text/plain'));
         const { listIndex: fromListIndex, playerIndex } = data;
@@ -50,7 +50,10 @@ export function SoccerTeamLists() {
 
             <div className='main-board'>
                 {vm.lists.map((list, listIndex) => (
-                    <div className="new-list" key={listIndex}>
+                    <div className="new-list"
+                        key={listIndex}
+                        onDragOver={handleDragOver}
+                        onDrop={(e) => handleDrop(e, listIndex)}>
                         {vm.renameListIndex === listIndex ? (
                             <form className='list-name-form' onSubmit={(e) => { e.preventDefault(); vm.submitRenameList(); }}>
                                 <input
@@ -85,8 +88,7 @@ export function SoccerTeamLists() {
                             </div>
                         )}
 
-                        <ul onDragOver={handleDragOver}
-                            onDrop={(e) => handleDrop(e, listIndex)}>
+                        <ul>
                             {list.players.map((player, playerIndex) => (
                                 <li key={playerIndex}
                                     draggable
