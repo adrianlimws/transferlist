@@ -1,7 +1,6 @@
 :root {
     font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
-    font-size: 1.4rem;
     line-height: 1.4;
     font-style: normal;
 
@@ -87,11 +86,15 @@ button:focus-visible {
     box-shadow: -2px -1px 5px 2px #e4e4e4;
 }
 
-.create-list-form,
+.create-list-form {
+    display: flex;
+    gap: 5px;
+}
 .add-player-form,
 .list-name-form,
 .edit-player-form {
     display: flex;
+    flex-direction: column;
     gap: 5px;
 }
 
