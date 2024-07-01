@@ -44,7 +44,9 @@ export function SoccerTeamLists() {
                         placeholder="Enter list name"
                     />
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
-                    <button className="add-list" type="submit">Create a New List</button>
+                    <button className="btn-add-list" type="submit">Create a New List</button>
+                    <button className="btn-export-list" type="submit">Export List to File</button>
+                    <button className="btn-load-list" type="submit">Load List from File</button>
                 </form>
             </div>
 
@@ -127,7 +129,9 @@ export function SoccerTeamLists() {
                                             <h3>
                                                 {player.name} [{player.position}]
                                                 {player.price !== undefined && ` - €${player.price}`}
-                                                <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>Edit</button>
+                                                <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>
+                                                    <img src={EditIcon} />
+                                                </button>
                                             </h3>
                                         </div>
 

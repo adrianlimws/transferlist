@@ -113,9 +113,10 @@ button:focus-visible {
 .list-buttons img,
 .add-player-form img,
 .edit-player-form img,
-.list-name-form img {
-    width: 32px;
-    height: 32px;
+.list-name-form img,
+.player-info button img {
+    width: 24px;
+    height: 24px;
 }
 
 .btn-edit {
@@ -128,7 +129,15 @@ button:focus-visible {
 .btn-add-player {
     background-color: #5ae19d;
 }
-
+.btn-add-list {
+    background-color: #e0e0e0;
+}
+.btn-export-list {
+    background-color: #ffcdb5;
+}
+.btn-load-list {
+    background-color: #faffae;
+}
 .list-buttons button {
     padding: 0.2em 0.5em;
 }
