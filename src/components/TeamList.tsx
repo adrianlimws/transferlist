@@ -129,14 +129,21 @@ export function SoccerTeamLists() {
                                     ) : (
 
                                         <div className="player-info">
-                                            <h3>
-                                                <span className='player-position'>{player.position} </span>
-                                                <span className='player-name'> {player.name} </span>
-                                                <span className="player-price">{player.price !== undefined && ` est. €${player.price.toLocaleString()}`}</span>
+                                            <span className='player-position'>{player.position} </span>
+                                            <div className="edit-player-btn">
+                                                <button className='btn-delete-player' onClick={() => {
+                                                    if (window.confirm('Are you sure you want to delete this player?')) {
+                                                        vm.deletePlayer(listIndex, playerIndex);
+                                                    }
+                                                }}>
+                                                    <img src={DeleteIcon} alt="Delete" />
+                                                </button>
                                                 <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>
                                                     <img src={EditIcon} />
                                                 </button>
-                                            </h3>
+                                            </div>
+                                            <span className='player-name'> {player.name} </span>
+                                            <span className="player-price">{player.price !== undefined && ` est. €${player.price.toLocaleString()}`} / </span>
                                         </div>
 
                                     )}

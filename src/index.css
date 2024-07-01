@@ -169,16 +169,29 @@ button:focus-visible {
     border: 2px dashed;
     margin-bottom: 1rem;
     padding: 1rem;
+    display: grid;
+    column-gap: 15px;
+    row-gap: 10px;
+}
+.player-name {
+    font-size: 3rem;
 }
 .player-position {
     border: 2px solid rgb(13, 110, 69);
     background-color: rgb(199, 255, 87);
-    border-radius: 2rem;
-    margin-right: 5px;
-    padding: 1px 5px;
+    border-radius: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    padding: 10px;
 }
 .player-price {
+    grid-column: 2 / span 3;
+    grid-row: 2;
+    font-size: 18px;
     color: rgb(51, 146, 114);
+}
+.edit-player-btn {
+    grid-row: 2;
 }
 
 @media (prefers-color-scheme: light) {

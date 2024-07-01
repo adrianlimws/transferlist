@@ -151,6 +151,12 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
+    const deletePlayer = (listIndex: number, playerIndex: number) => {
+        const updatedLists = [...lists]
+        updatedLists[listIndex].players.splice(playerIndex, 1)
+        setLists(updatedLists)
+    }
+
     return {
         lists,
         newListName,
@@ -164,6 +170,7 @@ export function useSoccerTeamListsViewModel() {
         activeListIndex,
         renameListIndex,
         renameListName,
+        deletePlayer,
         errors,
         setNewListName,
         setNewPlayerName,
