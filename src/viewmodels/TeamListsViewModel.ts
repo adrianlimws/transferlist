@@ -64,6 +64,20 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
+    const movePlayer = (
+        fromListIndex: number,
+        toListIndex: number,
+        playerIndex: number
+    ) => {
+        const updatedLists = [...lists]
+        const [movedPlayer] = updatedLists[fromListIndex].players.splice(
+            playerIndex,
+            1
+        )
+        updatedLists[toListIndex].players.push(movedPlayer)
+        setLists(updatedLists)
+    }
+
     const startRenameList = (index: number) => {
         setRenameListIndex(index)
         setRenameListName(lists[index].name)
@@ -86,6 +100,7 @@ export function useSoccerTeamListsViewModel() {
         lists,
         newListName,
         deleteList,
+        movePlayer,
         setNewListName,
         newPlayerName,
         setNewPlayerName,

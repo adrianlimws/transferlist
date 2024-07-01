@@ -76,6 +76,7 @@ button:focus-visible {
     margin: 0.5rem;
     padding: 0.6rem 1rem;
     border-radius: 1rem;
+    min-height: 100px;
     box-shadow: 2px 2px 2px 1px #a1a1a1;
 }
 
@@ -127,6 +128,20 @@ button:focus-visible {
 
 .list-buttons button {
     padding: 0.2em 0.5em;
+}
+
+.drag-over {
+    border-color: #000;
+    background-color: #f0f0f0;
+}
+
+.player-list {
+    min-height: 50px; /* Ensures empty lists can still be drop targets */
+    padding: 10px;
+}
+
+.dragging {
+    opacity: 0.5;
 }
 
 @media (prefers-color-scheme: light) {

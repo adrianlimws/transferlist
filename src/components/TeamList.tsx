@@ -9,6 +9,24 @@ import SaveIcon from '../assets/save.png'
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
 
+    const handleDragStart = (e: React.DragEvent<HTMLLIElement>, listIndex: number, playerIndex: number) => {
+        e.dataTransfer.setData('text/plain', JSON.stringify({ listIndex, playerIndex }));
+    };
+
+    const handleDragOver = (e: React.DragEvent<HTMLUListElement>) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLUListElement>, toListIndex: number) => {
+        e.preventDefault();
+        const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+        const { listIndex: fromListIndex, playerIndex } = data;
+
+        if (fromListIndex !== toListIndex) {
+            vm.movePlayer(fromListIndex, toListIndex, playerIndex);
+        }
+    };
+
     return (
         <>
             <div className='top-bar'>
@@ -67,9 +85,18 @@ export function SoccerTeamLists() {
                             </div>
                         )}
 
-                        <ul>
+                        <ul onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, listIndex)}>
                             {list.players.map((player, playerIndex) => (
-                                <li key={playerIndex}>{player.name} - {player.position}</li>
+                                <li key={playerIndex}
+                                    draggable
+                                    onDragStart={(e) => {
+                                        handleDragStart(e, listIndex, playerIndex);
+                                        e.currentTarget.classList.add('dragging');
+                                    }}
+                                    onDragEnd={(e) => e.currentTarget.classList.remove()}
+                                >
+                                    {player.name} - {player.position}</li>
                             ))}
                         </ul>
 
