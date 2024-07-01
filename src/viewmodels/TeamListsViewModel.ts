@@ -1,4 +1,3 @@
-// viewmodels/SoccerTeamListsViewModel.ts
 import { useState } from 'react'
 import { TeamList } from '../models/Types'
 
@@ -7,6 +6,14 @@ export function useSoccerTeamListsViewModel() {
     const [newListName, setNewListName] = useState('')
     const [newPlayerName, setNewPlayerName] = useState('')
     const [newPlayerPosition, setNewPlayerPosition] = useState('')
+    const [newPlayerPrice, setNewPlayerPrice] = useState('')
+    const [editingPlayer, setEditingPlayer] = useState<{
+        listIndex: number
+        playerIndex: number
+    } | null>(null)
+    const [editPlayerName, setEditPlayerName] = useState('')
+    const [editPlayerPosition, setEditPlayerPosition] = useState('')
+    const [editPlayerPrice, setEditPlayerPrice] = useState('')
     const [activeListIndex, setActiveListIndex] = useState<number | null>(null)
     const [renameListIndex, setRenameListIndex] = useState<number | null>(null)
     const [renameListName, setRenameListName] = useState('')
@@ -17,6 +24,13 @@ export function useSoccerTeamListsViewModel() {
             setErrors((prev) => ({
                 ...prev,
                 [name]: 'This field cannot be empty',
+            }))
+            return false
+        }
+        if (name.toLowerCase().includes('price') && isNaN(parseFloat(value))) {
+            setErrors((prev) => ({
+                ...prev,
+                [name]: 'Price must be a valid number',
             }))
             return false
         }
@@ -45,21 +59,59 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
+    const startEditPlayer = (listIndex: number, playerIndex: number) => {
+        const player = lists[listIndex].players[playerIndex]
+        setEditingPlayer({ listIndex, playerIndex })
+        setEditPlayerName(player.name)
+        setEditPlayerPosition(player.position)
+        setEditPlayerPrice(player.price?.toString() || '')
+    }
+
+    const submitEditPlayer = () => {
+        if (
+            editingPlayer &&
+            validateField('editPlayerName', editPlayerName) &&
+            validateField('editPlayerPosition', editPlayerPosition) &&
+            validateField('editPlayerPrice', editPlayerPrice)
+        ) {
+            const updatedLists = [...lists]
+            const player =
+                updatedLists[editingPlayer.listIndex].players[
+                    editingPlayer.playerIndex
+                ]
+            player.name = editPlayerName
+            player.position = editPlayerPosition
+            player.price = editPlayerPrice
+                ? parseFloat(editPlayerPrice)
+                : undefined
+            setLists(updatedLists)
+            setEditingPlayer(null)
+        }
+    }
+
     const addPlayer = () => {
         const isNameValid = validateField('newPlayerName', newPlayerName)
         const isPositionValid = validateField(
             'newPlayerPosition',
             newPlayerPosition
         )
-        if (activeListIndex !== null && isNameValid && isPositionValid) {
+        const isPriceValid = validateField('newPlayerPrice', newPlayerPrice)
+        if (
+            activeListIndex !== null &&
+            isNameValid &&
+            isPositionValid &&
+            isPriceValid
+        ) {
             const updatedLists = [...lists]
             updatedLists[activeListIndex].players.push({
                 name: newPlayerName,
                 position: newPlayerPosition,
+                price: newPlayerPrice ? parseFloat(newPlayerPrice) : undefined,
             })
             setLists(updatedLists)
             setNewPlayerName('')
             setNewPlayerPosition('')
+            setNewPlayerPrice('')
             setActiveListIndex(null)
         }
     }
@@ -74,7 +126,10 @@ export function useSoccerTeamListsViewModel() {
             playerIndex,
             1
         )
-        updatedLists[toListIndex].players.push(movedPlayer)
+        updatedLists[toListIndex].players = [
+            ...updatedLists[toListIndex].players,
+            movedPlayer,
+        ]
         setLists(updatedLists)
     }
 
@@ -99,21 +154,32 @@ export function useSoccerTeamListsViewModel() {
     return {
         lists,
         newListName,
-        deleteList,
-        movePlayer,
-        setNewListName,
         newPlayerName,
-        setNewPlayerName,
         newPlayerPosition,
-        setNewPlayerPosition,
+        newPlayerPrice,
+        editingPlayer,
+        editPlayerName,
+        editPlayerPosition,
+        editPlayerPrice,
         activeListIndex,
-        setActiveListIndex,
         renameListIndex,
         renameListName,
-        setRenameListName,
         errors,
+        setNewListName,
+        setNewPlayerName,
+        setNewPlayerPosition,
+        setNewPlayerPrice,
+        setEditPlayerName,
+        setEditPlayerPosition,
+        setEditPlayerPrice,
+        setActiveListIndex,
+        setRenameListName,
         addList,
+        deleteList,
+        startEditPlayer,
+        submitEditPlayer,
         addPlayer,
+        movePlayer,
         startRenameList,
         submitRenameList,
         validateField,

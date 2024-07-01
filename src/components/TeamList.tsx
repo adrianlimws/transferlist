@@ -96,9 +96,43 @@ export function SoccerTeamLists() {
                                         handleDragStart(e, listIndex, playerIndex);
                                         e.currentTarget.classList.add('dragging');
                                     }}
-                                    onDragEnd={(e) => e.currentTarget.classList.remove()}
+                                    onDragEnd={(e) => e.currentTarget.classList.remove('dragging')}
                                 >
-                                    {player.name} - {player.position}</li>
+                                    {vm.editingPlayer?.listIndex === listIndex && vm.editingPlayer?.playerIndex === playerIndex ? (
+                                        <form className='edit-player-form' onSubmit={(e) => { e.preventDefault(); vm.submitEditPlayer(); }}>
+                                            <input
+                                                type="text"
+                                                className='input-edit-player'
+                                                value={vm.editPlayerName}
+                                                onChange={(e) => vm.setEditPlayerName(e.target.value)}
+                                            />
+                                            <input
+                                                type="text"
+                                                className='input-edit-player'
+                                                value={vm.editPlayerPosition}
+                                                onChange={(e) => vm.setEditPlayerPosition(e.target.value)}
+                                            />
+                                            <input
+                                                type="number"
+                                                className='input-edit-player'
+                                                value={vm.editPlayerPrice}
+                                                onChange={(e) => vm.setEditPlayerPrice(e.target.value)}
+                                                placeholder="Price"
+                                            />
+                                            <button type="submit"><img src={SaveIcon} /></button>
+                                        </form>
+                                    ) : (
+
+                                        <div className="player-info">
+                                            <h3>
+                                                {player.name} [{player.position}]
+                                                {player.price !== undefined && ` - €${player.price}`}
+                                                <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>Edit</button>
+                                            </h3>
+                                        </div>
+
+                                    )}
+                                </li>
                             ))}
                         </ul>
 
@@ -114,6 +148,7 @@ export function SoccerTeamLists() {
                                     }}
                                     placeholder="Enter player name"
                                 />
+
                                 {vm.errors.newPlayerName && <p style={{ color: 'red' }}>{vm.errors.newPlayerName}</p>}
                                 <input
                                     type="text"
@@ -126,6 +161,13 @@ export function SoccerTeamLists() {
                                     placeholder="Enter player position"
                                 />
                                 {vm.errors.newPlayerPosition && <p style={{ color: 'red' }}>{vm.errors.newPlayerPosition}</p>}
+                                <input
+                                    type="number"
+                                    className='input-add-player'
+                                    value={vm.newPlayerPrice}
+                                    onChange={(e) => vm.setNewPlayerPrice(e.target.value)}
+                                    placeholder="Enter player price"
+                                />
                                 <button type="submit"><img src={AddPlayerToListIcon} /></button>
                                 <button type="button" onClick={() => vm.setActiveListIndex(null)}><img src={CancelIcon} /></button>
 

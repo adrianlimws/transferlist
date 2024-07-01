@@ -4,7 +4,11 @@
     left: 0;
 }
 
-ul li {
+ul {
+    padding: 0;
+}
+
+li {
     list-style-type: none;
     list-style-position: inside;
     margin: 0;

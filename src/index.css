@@ -62,6 +62,7 @@ button:focus-visible {
 }
 
 .input-add-player,
+.input-edit-player,
 .input-rename {
     padding: 1rem 2rem;
     border-radius: 5px;
@@ -82,7 +83,8 @@ button:focus-visible {
 
 .create-list-form,
 .add-player-form,
-.list-name-form {
+.list-name-form,
+.edit-player-form {
     display: flex;
     gap: 5px;
 }
@@ -110,6 +112,7 @@ button:focus-visible {
 
 .list-buttons img,
 .add-player-form img,
+.edit-player-form img,
 .list-name-form img {
     width: 32px;
     height: 32px;
@@ -136,7 +139,7 @@ button:focus-visible {
 }
 
 .player-list {
-    min-height: 50px; /* Ensures empty lists can still be drop targets */
+    min-height: 50px;
     padding: 10px;
 }
 
