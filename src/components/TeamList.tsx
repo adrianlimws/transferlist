@@ -143,7 +143,11 @@ export function SoccerTeamLists() {
                                                 </button>
                                             </div>
                                             <span className='player-name'> {player.name} </span>
-                                            <span className="player-price">{player.price !== undefined && ` est. €${player.price.toLocaleString()}`} / </span>
+                                            <span className="player-price">
+                                                {player.price !== undefined &&
+                                                    `€${player.price.toLocaleString()} / ${vm.convertEuroToPounds(player.price)}`
+                                                }
+                                            </span>
                                         </div>
 
                                     )}

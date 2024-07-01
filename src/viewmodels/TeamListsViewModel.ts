@@ -1,5 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TeamList } from '../models/Types'
+import axios from 'axios'
+
+const EXCHANGE_RATE_KEY = 'EUR_GBP_EXCHANGE_RATE'
+const EXCHANGE_RATE_TIMESTAMP_KEY = 'EUR_GBP_EXCHANGE_RATE_TIMESTAMP'
+const RATE_REFRESH_INTERVAL = 24 * 60 * 60 * 1000
 
 export function useSoccerTeamListsViewModel() {
     const [lists, setLists] = useState<TeamList[]>([])
@@ -18,6 +23,54 @@ export function useSoccerTeamListsViewModel() {
     const [renameListIndex, setRenameListIndex] = useState<number | null>(null)
     const [renameListName, setRenameListName] = useState('')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const [exchangeRate, setExchangeRate] = useState<number | null>(null)
+
+    useEffect(() => {
+        loadExchangeRate()
+    }, [])
+
+    const loadExchangeRate = async () => {
+        const storedRate = localStorage.getItem(EXCHANGE_RATE_KEY)
+        const storedTimestamp = localStorage.getItem(
+            EXCHANGE_RATE_TIMESTAMP_KEY
+        )
+
+        if (storedRate && storedTimestamp) {
+            const timestamp = parseInt(storedTimestamp, 10)
+            if (Date.now() - timestamp < RATE_REFRESH_INTERVAL) {
+                setExchangeRate(parseFloat(storedRate))
+                return
+            }
+        }
+
+        await fetchExchangeRate()
+    }
+
+    const fetchExchangeRate = async () => {
+        try {
+            const apiKey = import.meta.env.VITE_CURRENCY_API_KEY
+            const response = await axios.get(
+                `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&currencies=GBP&base_currency=EUR`
+            )
+            const gbpRate = response.data.data.GBP
+            setExchangeRate(gbpRate)
+            localStorage.setItem(EXCHANGE_RATE_KEY, gbpRate.toString())
+            localStorage.setItem(
+                EXCHANGE_RATE_TIMESTAMP_KEY,
+                Date.now().toString()
+            )
+        } catch (error) {
+            console.error('Error fetching exchange rate:', error)
+        }
+    }
+
+    const convertEuroToPounds = (euroAmount: number): string => {
+        if (exchangeRate === null) {
+            return '£ --' // or some loading indicator
+        }
+        const poundsAmount = euroAmount * exchangeRate
+        return `£${poundsAmount.toFixed(2)}`
+    }
 
     const validateField = (name: string, value: string) => {
         if (!value.trim()) {
@@ -190,5 +243,7 @@ export function useSoccerTeamListsViewModel() {
         startRenameList,
         submitRenameList,
         validateField,
+        exchangeRate,
+        convertEuroToPounds,
     }
 }
