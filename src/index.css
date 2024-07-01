@@ -98,6 +98,7 @@ button:focus-visible {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin-bottom: 1rem;
 }
 
 .list-title {
@@ -187,7 +188,7 @@ button:focus-visible {
 .player-price {
     grid-column: 2 / span 3;
     grid-row: 2;
-    font-size: 18px;
+    font-size: 30px;
     color: rgb(51, 146, 114);
 }
 .edit-player-btn {

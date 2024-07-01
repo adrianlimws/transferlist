@@ -64,12 +64,18 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
+    const formatNumber = (num: number): string => {
+        return num.toLocaleString('en-GB', {
+            maximumFractionDigits: 0,
+        })
+    }
+
     const convertEuroToPounds = (euroAmount: number): string => {
         if (exchangeRate === null) {
-            return '£ --' // or some loading indicator
+            return '£ --'
         }
         const poundsAmount = euroAmount * exchangeRate
-        return `£${poundsAmount.toFixed(2)}`
+        return `£${formatNumber(poundsAmount)}`
     }
 
     const validateField = (name: string, value: string) => {

@@ -122,7 +122,7 @@ export function SoccerTeamLists() {
                                                 className='input-edit-player'
                                                 value={vm.editPlayerPrice}
                                                 onChange={(e) => vm.setEditPlayerPrice(e.target.value)}
-                                                placeholder="Price"
+                                                placeholder="Price in € Euros"
                                             />
                                             <button type="submit"><img src={SaveIcon} /></button>
                                         </form>
@@ -194,6 +194,10 @@ export function SoccerTeamLists() {
                         )}
                     </div>
                 ))}
+            </div>
+
+            <div className='footer'>
+                <p>created by <a href='https://github.com/adrianlimws/transferlist' target='_blank'>Adr1an</a></p>
             </div>
         </>
     );

@@ -11,10 +11,10 @@ A simple way to create multiple list where player's info can be displayed and or
 ## Planned Features
 
 -   Create/Rename list
--   Add player name, position, market value, asking price, release clause
--   Ability to drag and drop player from one list to another freely
--   Save list locally and export data for sharing purposes or onto another device
+-   Add player details (name, position, estimated transfer value)
+-   Edit/Create/Delete/Drag+Drop player to different list
+-   Import/Export list data via file
 
-## Advanced Features
+## Wishful Feature
 
 -   Pulling data from Transfermarket to populate the player details
