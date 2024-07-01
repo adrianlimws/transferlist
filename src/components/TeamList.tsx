@@ -46,7 +46,7 @@ export function SoccerTeamLists() {
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
                     <button className="btn-add-list" type="submit">Create a New List</button>
                     <button className="btn-export-list" type="submit">Export List to File</button>
-                    <button className="btn-load-list" type="submit">Load List from File</button>
+                    <button className="btn-load-list" type="submit">Import List from File</button>
                 </form>
             </div>
 
@@ -127,8 +127,9 @@ export function SoccerTeamLists() {
 
                                         <div className="player-info">
                                             <h3>
-                                                {player.name} [{player.position}]
-                                                {player.price !== undefined && ` - €${player.price}`}
+                                                <span className='player-position'>{player.position} </span>
+                                                <span className='player-name'> {player.name} </span>
+                                                <span className="player-price">{player.price !== undefined && ` est. €${player.price.toLocaleString()}`}</span>
                                                 <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>
                                                     <img src={EditIcon} />
                                                 </button>

@@ -1,7 +1,9 @@
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
+    font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-style: normal;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -115,29 +117,10 @@ button:focus-visible {
 .edit-player-form img,
 .list-name-form img,
 .player-info button img {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
 }
 
-.btn-edit {
-    background-color: #56c0f9;
-}
-.btn-delete,
-.btn-cancel {
-    background-color: #df4b4b;
-}
-.btn-add-player {
-    background-color: #5ae19d;
-}
-.btn-add-list {
-    background-color: #e0e0e0;
-}
-.btn-export-list {
-    background-color: #ffcdb5;
-}
-.btn-load-list {
-    background-color: #faffae;
-}
 .list-buttons button {
     padding: 0.2em 0.5em;
 }
@@ -154,6 +137,22 @@ button:focus-visible {
 
 .dragging {
     opacity: 0.5;
+}
+
+.player-info {
+    border: 2px dashed;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+.player-position {
+    border: 2px solid rgb(13, 110, 69);
+    background-color: rgb(199, 255, 87);
+    border-radius: 2rem;
+    margin-right: 5px;
+    padding: 1px 5px;
+}
+.player-price {
+    color: rgb(51, 146, 114);
 }
 
 @media (prefers-color-scheme: light) {
