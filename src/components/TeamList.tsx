@@ -45,8 +45,8 @@ export function SoccerTeamLists() {
                     />
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
                     <button className="btn-add-list" type="submit">Create a New List</button>
-                    <button className="btn-export-list" type="submit">Export List to File</button>
-                    <button className="btn-load-list" type="submit">Import List from File</button>
+                    <button className="btn-export-list" disabled>Export List to File(Soon!)</button>
+                    <button className="btn-load-list" disabled>Import List from File(Soon!)</button>
                 </form>
             </div>
 
