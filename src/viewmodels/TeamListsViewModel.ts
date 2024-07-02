@@ -48,9 +48,9 @@ export function useSoccerTeamListsViewModel() {
 
     const fetchExchangeRate = async () => {
         try {
-            // const apiKey = import.meta.env.VITE_CURRENCY_API_KEY
+            const apiKey = import.meta.env.CURRENCY_API_KEY
             const response = await axios.get(
-                'https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_XPmNn9dZa0FOQgTCxEfrEKxvXen9FYSu6DgXDdYW&currencies=GBP&base_currency=EUR'
+                `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&currencies=GBP&base_currency=EUR`
             )
             const gbpRate = response.data.data.GBP
             setExchangeRate(gbpRate)
