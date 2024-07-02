@@ -134,6 +134,9 @@ button:focus-visible {
 .btn-delete {
     background-color: rgb(255, 134, 134);
 }
+.btn-add-list {
+    background-color: rgb(134, 255, 205);
+}
 
 .drag-over {
     border-color: #000;

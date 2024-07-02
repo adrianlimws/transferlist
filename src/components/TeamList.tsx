@@ -5,6 +5,8 @@ import EditIcon from '../assets/edit.png'
 import AddPlayerToListIcon from '../assets/add-player.png'
 import CancelIcon from '../assets/cancel.png'
 import SaveIcon from '../assets/save.png'
+import AddListIcon from '../assets/add.png'
+
 
 
 export function SoccerTeamLists() {
@@ -45,7 +47,8 @@ export function SoccerTeamLists() {
                         placeholder="Enter list name"
                     />
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
-                    <button className="btn-add-list" type="submit">Create a New List</button>
+                    <button className="btn-add-list" type="submit">
+                        <img src={AddListIcon} /> </button>
                     <button className="btn-export-list" disabled>Export List to File(Soon!)</button>
                     <button className="btn-load-list" disabled>Import List from File(Soon!)</button>
                 </form>
