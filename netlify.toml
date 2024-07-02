@@ -19,6 +19,3 @@
   #  publish = "dist" # Folder with the static content for _redirect file
 
   ## more info on configuring this file: https://ntl.fyi/file-based-build-config
-
-
-VITE_CURRENCY_API_KEY=fca_live_XPmNn9dZa0FOQgTCxEfrEKxvXen9FYSu6DgXDdYW
