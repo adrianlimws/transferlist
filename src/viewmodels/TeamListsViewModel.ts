@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react'
 import { TeamList } from '../models/Types'
 import axios from 'axios'
 
-const EXCHANGE_RATE_KEY = 'EUR_GBP_EXCHANGE_RATE'
-const EXCHANGE_RATE_TIMESTAMP_KEY = 'EUR_GBP_EXCHANGE_RATE_TIMESTAMP'
-const RATE_REFRESH_INTERVAL = 24 * 60 * 60 * 1000
+const EXCHANGE_RATES_KEY = 'EUR_EXCHANGE_RATES'
+const EXCHANGE_RATES_TIMESTAMP_KEY = 'EUR_EXCHANGE_RATES_TIMESTAMP'
+const RATE_REFRESH_INTERVAL = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+
+interface ExchangeRates {
+    [key: string]: number
+}
 
 export function useSoccerTeamListsViewModel() {
     const [lists, setLists] = useState<TeamList[]>([])
@@ -23,59 +27,62 @@ export function useSoccerTeamListsViewModel() {
     const [renameListIndex, setRenameListIndex] = useState<number | null>(null)
     const [renameListName, setRenameListName] = useState('')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [exchangeRate, setExchangeRate] = useState<number | null>(null)
+    const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(
+        null
+    )
 
     useEffect(() => {
-        loadExchangeRate()
+        loadExchangeRates()
     }, [])
 
-    const loadExchangeRate = async () => {
-        const storedRate = localStorage.getItem(EXCHANGE_RATE_KEY)
+    const loadExchangeRates = async () => {
+        const storedRates = localStorage.getItem(EXCHANGE_RATES_KEY)
         const storedTimestamp = localStorage.getItem(
-            EXCHANGE_RATE_TIMESTAMP_KEY
+            EXCHANGE_RATES_TIMESTAMP_KEY
         )
 
-        if (storedRate && storedTimestamp) {
+        if (storedRates && storedTimestamp) {
             const timestamp = parseInt(storedTimestamp, 10)
             if (Date.now() - timestamp < RATE_REFRESH_INTERVAL) {
-                setExchangeRate(parseFloat(storedRate))
+                setExchangeRates(JSON.parse(storedRates))
                 return
             }
         }
 
-        await fetchExchangeRate()
+        await fetchExchangeRates()
     }
 
-    const fetchExchangeRate = async () => {
+    const fetchExchangeRates = async () => {
         try {
-            const apiKey = import.meta.env.CURRENCY_API_KEY
             const response = await axios.get(
-                `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&currencies=GBP&base_currency=EUR`
+                'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json'
             )
-            const gbpRate = response.data.data.GBP
-            setExchangeRate(gbpRate)
-            localStorage.setItem(EXCHANGE_RATE_KEY, gbpRate.toString())
+            const rates = response.data.eur
+            setExchangeRates(rates)
+            localStorage.setItem(EXCHANGE_RATES_KEY, JSON.stringify(rates))
             localStorage.setItem(
-                EXCHANGE_RATE_TIMESTAMP_KEY,
+                EXCHANGE_RATES_TIMESTAMP_KEY,
                 Date.now().toString()
             )
         } catch (error) {
-            console.error('Error fetching exchange rate:', error)
+            console.error('Error fetching exchange rates:', error)
         }
     }
 
     const formatNumber = (num: number): string => {
-        return num.toLocaleString('en-GB', {
-            maximumFractionDigits: 0,
-        })
+        return num.toLocaleString('en-GB', { maximumFractionDigits: 0 })
     }
 
-    const convertEuroToPounds = (euroAmount: number): string => {
-        if (exchangeRate === null) {
-            return '£ --'
+    const convertEuroToCurrency = (
+        euroAmount: number,
+        currencyCode: string
+    ): string => {
+        if (!exchangeRates || !(currencyCode.toLowerCase() in exchangeRates)) {
+            return '-- '
         }
-        const poundsAmount = euroAmount * exchangeRate
-        return `£${formatNumber(poundsAmount)}`
+        const rate = exchangeRates[currencyCode.toLowerCase()]
+        const convertedAmount = Math.round(euroAmount * rate)
+        return formatNumber(convertedAmount)
     }
 
     const validateField = (name: string, value: string) => {
@@ -263,7 +270,8 @@ export function useSoccerTeamListsViewModel() {
         startRenameList,
         submitRenameList,
         validateField,
-        exchangeRate,
-        convertEuroToPounds,
+        exchangeRates,
+        convertEuroToCurrency,
+        formatNumber,
     }
 }
