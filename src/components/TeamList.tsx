@@ -1,7 +1,6 @@
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
 import AddPlayerIcon from '../assets/add-user.png'
 import DeleteListIcon from '../assets/delete-list.png'
-import DeletePlayerIcon from '../assets/delete-player.png'
 import EditIcon from '../assets/edit.png'
 import AddPlayerToListIcon from '../assets/add-player.png'
 import CancelIcon from '../assets/cancel.png'
