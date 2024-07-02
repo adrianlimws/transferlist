@@ -216,6 +216,18 @@ export function useSoccerTeamListsViewModel() {
         setLists(updatedLists)
     }
 
+    const cancelEditPlayer = () => {
+        setEditingPlayer(null)
+        setEditPlayerName('')
+        setEditPlayerPosition('')
+        setEditPlayerPrice('')
+    }
+
+    const cancelRenameList = () => {
+        setRenameListIndex(null)
+        setRenameListName('')
+    }
+
     return {
         lists,
         newListName,
@@ -226,6 +238,8 @@ export function useSoccerTeamListsViewModel() {
         editPlayerName,
         editPlayerPosition,
         editPlayerPrice,
+        cancelEditPlayer,
+        cancelRenameList,
         activeListIndex,
         renameListIndex,
         renameListName,

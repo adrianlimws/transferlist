@@ -6,6 +6,7 @@ import AddPlayerToListIcon from '../assets/add-player.png'
 import CancelIcon from '../assets/cancel.png'
 import SaveIcon from '../assets/save.png'
 
+
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
 
@@ -69,6 +70,7 @@ export function SoccerTeamLists() {
                                 />
                                 {vm.errors.renameListName && <p style={{ color: 'red' }}>{vm.errors.renameListName}</p>}
                                 <button className='btn-save' type="submit"><img src={SaveIcon} /></button>
+                                <button className='btn-cancel' type="button" onClick={() => vm.cancelRenameList()}><img src={CancelIcon} /></button>
                             </form>
                         ) : (
                             <div className="list-header">
@@ -125,6 +127,7 @@ export function SoccerTeamLists() {
                                                 placeholder="Price in € Euros"
                                             />
                                             <button type="submit"><img src={SaveIcon} /></button>
+                                            <button type="button" onClick={() => vm.cancelEditPlayer()}><img src={CancelIcon} /></button>
                                         </form>
                                     ) : (
 
