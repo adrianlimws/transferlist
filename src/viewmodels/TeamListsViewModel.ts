@@ -30,6 +30,34 @@ export function useSoccerTeamListsViewModel() {
     const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(
         null
     )
+    const exportLists = () => {
+        const dataStr = JSON.stringify(lists)
+        const dataUri =
+            'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
+        const exportFileDefaultName = 'soccer_team_lists.json'
+
+        const linkElement = document.createElement('a')
+        linkElement.setAttribute('href', dataUri)
+        linkElement.setAttribute('download', exportFileDefaultName)
+        linkElement.click()
+    }
+
+    const importLists = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (file) {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                try {
+                    const importedLists = JSON.parse(e.target?.result as string)
+                    setLists(importedLists)
+                } catch (error) {
+                    console.error('Error parsing imported file:', error)
+                    // You might want to show an error message to the user here
+                }
+            }
+            reader.readAsText(file)
+        }
+    }
 
     useEffect(() => {
         loadExchangeRates()
@@ -273,5 +301,7 @@ export function useSoccerTeamListsViewModel() {
         exchangeRates,
         convertEuroToCurrency,
         formatNumber,
+        exportLists,
+        importLists,
     }
 }

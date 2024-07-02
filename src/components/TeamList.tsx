@@ -6,12 +6,11 @@ import AddPlayerToListIcon from '../assets/add-player.png'
 import CancelIcon from '../assets/cancel.png'
 import SaveIcon from '../assets/save.png'
 import AddListIcon from '../assets/add.png'
-
-
+import React, { useRef } from 'react';
 
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
-
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>, listIndex: number, playerIndex: number) => {
         e.dataTransfer.setData('text/plain', JSON.stringify({ listIndex, playerIndex }));
     };
@@ -49,8 +48,15 @@ export function SoccerTeamLists() {
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
                     <button className="btn-add-list" type="submit">
                         <img src={AddListIcon} /> </button>
-                    <button className="btn-export-list" disabled>Export List to File(Soon!)</button>
-                    <button className="btn-load-list" disabled>Import List from File(Soon!)</button>
+                    <button className="btn-export-list" onClick={vm.exportLists}>Export Lists to File</button>
+                    <button className="btn-load-list" onClick={() => fileInputRef.current?.click()}>Import Lists from File</button>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={vm.importLists}
+                        accept=".json"
+                    />
                 </form>
             </div>
 
