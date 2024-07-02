@@ -41,20 +41,34 @@ export function SoccerTeamLists() {
                         value={vm.newListName}
                         onChange={(e) => {
                             vm.setNewListName(e.target.value);
-                            vm.validateField('newListName', e.target.value);
+                            vm.validateField('newListName', e.target.value, true);
                         }}
                         placeholder="Enter list name"
                     />
                     {vm.errors.newListName && <p style={{ color: 'red' }}>{vm.errors.newListName}</p>}
                     <button className="btn-add-list" type="submit">
-                        <img src={AddListIcon} /> </button>
-                    <button className="btn-export-list" onClick={vm.exportLists}>Export Lists to File</button>
-                    <button className="btn-load-list" onClick={() => fileInputRef.current?.click()}>Import Lists from File</button>
+                        <img src={AddListIcon} alt="Add List" />
+                    </button>
+                    <button className="btn-export-list" type="button" onClick={() => {
+                        vm.validateField('newListName', vm.newListName, false);
+                        vm.exportLists();
+                    }}>
+                        Export Lists to File
+                    </button>
+                    <button className="btn-load-list" type="button" onClick={() => {
+                        vm.validateField('newListName', vm.newListName, false);
+                        fileInputRef.current?.click();
+                    }}>
+                        Import Lists from File
+                    </button>
                     <input
                         type="file"
                         ref={fileInputRef}
                         style={{ display: 'none' }}
-                        onChange={vm.importLists}
+                        onChange={(e) => {
+                            vm.validateField('newListName', vm.newListName, false);
+                            vm.importLists(e);
+                        }}
                         accept=".json"
                     />
                 </form>

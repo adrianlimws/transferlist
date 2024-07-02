@@ -113,7 +113,16 @@ export function useSoccerTeamListsViewModel() {
         return formatNumber(convertedAmount)
     }
 
-    const validateField = (name: string, value: string) => {
+    const validateField = (
+        name: string,
+        value: string,
+        shouldValidate: boolean = true
+    ) => {
+        if (!shouldValidate) {
+            setErrors((prev) => ({ ...prev, [name]: '' }))
+            return true
+        }
+
         if (!value.trim()) {
             setErrors((prev) => ({
                 ...prev,
