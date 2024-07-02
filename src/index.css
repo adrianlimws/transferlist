@@ -20,7 +20,7 @@ a:hover {
 }
 
 input {
-    font-size: 22px;
+    font-size: 32px;
 }
 
 body {
@@ -82,7 +82,8 @@ button:focus-visible {
     position: fixed;
     bottom: 0;
     right: 0;
-    padding: 5px;
+    padding: 1rem;
+    border-radius: 2rem 0 0 0;
     background-color: #f0f0f0;
 }
 
@@ -126,16 +127,6 @@ button:focus-visible {
 
 .list-buttons button {
     padding: 0.2em 0.5em;
-}
-
-.btn-add-player {
-    background-color: rgb(142, 223, 255);
-}
-.btn-delete {
-    background-color: rgb(255, 134, 134);
-}
-.btn-add-list {
-    background-color: rgb(134, 255, 205);
 }
 
 .drag-over {

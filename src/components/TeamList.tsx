@@ -1,11 +1,15 @@
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
 import AddPlayerIcon from '../assets/add-user.png'
-import DeleteIcon from '../assets/delete.png'
+import DeleteListIcon from '../assets/delete-list.png'
+import DeletePlayerIcon from '../assets/delete-player.png'
 import EditIcon from '../assets/edit.png'
 import AddPlayerToListIcon from '../assets/add-player.png'
 import CancelIcon from '../assets/cancel.png'
 import SaveIcon from '../assets/save.png'
 import AddListIcon from '../assets/add.png'
+import HeartIcon from '../assets/heart.png'
+import ImportIcon from '../assets/import.png'
+import ExportIcon from '../assets/export.png'
 import React, { useRef } from 'react';
 
 export function SoccerTeamLists() {
@@ -53,13 +57,13 @@ export function SoccerTeamLists() {
                         vm.validateField('newListName', vm.newListName, false);
                         vm.exportLists();
                     }}>
-                        Export Lists to File
+                        <img src={ExportIcon} />
                     </button>
                     <button className="btn-load-list" type="button" onClick={() => {
                         vm.validateField('newListName', vm.newListName, false);
                         fileInputRef.current?.click();
                     }}>
-                        Import Lists from File
+                        <img src={ImportIcon} />
                     </button>
                     <input
                         type="file"
@@ -110,7 +114,7 @@ export function SoccerTeamLists() {
                                         if (window.confirm('Are you sure you want to delete this list?')) {
                                             vm.deleteList(listIndex);
                                         }
-                                    }}><img src={DeleteIcon} /></button>
+                                    }}><img src={DeleteListIcon} /></button>
 
                                     <button className='btn-add-player' onClick={() => vm.setActiveListIndex(listIndex)}>
                                         <img src={AddPlayerIcon} /> </button>
@@ -162,7 +166,7 @@ export function SoccerTeamLists() {
                                                         vm.deletePlayer(listIndex, playerIndex);
                                                     }
                                                 }}>
-                                                    <img src={DeleteIcon} alt="Delete" />
+                                                    <img src={DeleteListIcon} alt="Delete" />
                                                 </button>
                                                 <button onClick={() => vm.startEditPlayer(listIndex, playerIndex)}>
                                                     <img src={EditIcon} />
@@ -223,7 +227,13 @@ export function SoccerTeamLists() {
             </div>
 
             <div className='footer'>
-                <p>created by <a href='https://github.com/adrianlimws/transferlist' target='_blank'>Adr1an</a></p>
+                <p>
+                    Transferlist v1.0.12 by <a href='https://github.com/adrianlimws' target='_blank'>Adr1an</a>
+                    |
+                    <a href="https://buymeacoffee.com/adrianlimwk" target='_blank'><img src={HeartIcon} /> Buy me a pizza <img src={HeartIcon} /> </a>
+                    |
+                    <a href="https://github.com/adrianlimws/transferlist" target='_blank'>Fork this Project</a>
+                </p>
             </div>
         </>
     );

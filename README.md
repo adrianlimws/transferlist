@@ -8,13 +8,15 @@ Every transfer window in the english premier league, there are fan based driven 
 
 A simple way to create multiple list where player's info can be displayed and organised.
 
-## Planned Features
+## Technology used
+
+-   Vite + React TS
+-   Flaticons
+-   HTML5 Draggable
+
+## Features
 
 -   Create/Rename list
 -   Add player details (name, position, estimated transfer value)
 -   Edit/Create/Delete/Drag+Drop player to different list
--   Import/Export list data via file
-
-## Wishful Feature
-
--   Pulling data from Transfermarket to populate the player details
+-   Import/Export list data via json file
