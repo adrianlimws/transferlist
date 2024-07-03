@@ -5,6 +5,25 @@ import axios from 'axios'
 const EXCHANGE_RATES_KEY = 'EUR_EXCHANGE_RATES'
 const EXCHANGE_RATES_TIMESTAMP_KEY = 'EUR_EXCHANGE_RATES_TIMESTAMP'
 const RATE_REFRESH_INTERVAL = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+const PLAYER_POSITIONS = [
+    'GK',
+    'RB',
+    'LB',
+    'RCB',
+    'LCB',
+    'CB',
+    'DM',
+    'BBM',
+    'CM',
+    'AM',
+    'RW',
+    'LW',
+    'IF',
+    'F9',
+    'TM',
+    'CF',
+    'ST',
+]
 
 interface ExchangeRates {
     [key: string]: number
@@ -312,5 +331,6 @@ export function useSoccerTeamListsViewModel() {
         formatNumber,
         exportLists,
         importLists,
+        playerPositions: PLAYER_POSITIONS,
     }
 }

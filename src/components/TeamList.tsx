@@ -140,12 +140,15 @@ export function SoccerTeamLists() {
                                                 value={vm.editPlayerName}
                                                 onChange={(e) => vm.setEditPlayerName(e.target.value)}
                                             />
-                                            <input
-                                                type="text"
+                                            <select
                                                 className='input-edit-player'
                                                 value={vm.editPlayerPosition}
                                                 onChange={(e) => vm.setEditPlayerPosition(e.target.value)}
-                                            />
+                                            >
+                                                {vm.playerPositions.map((position) => (
+                                                    <option key={position} value={position}>{position}</option>
+                                                ))}
+                                            </select>
                                             <input
                                                 type="number"
                                                 className='input-edit-player'
@@ -199,16 +202,19 @@ export function SoccerTeamLists() {
                                 />
 
                                 {vm.errors.newPlayerName && <p style={{ color: 'red' }}>{vm.errors.newPlayerName}</p>}
-                                <input
-                                    type="text"
+                                <select
                                     className='input-add-player'
                                     value={vm.newPlayerPosition}
                                     onChange={(e) => {
                                         vm.setNewPlayerPosition(e.target.value);
                                         vm.validateField('newPlayerPosition', e.target.value);
                                     }}
-                                    placeholder="Enter player position"
-                                />
+                                >
+                                    <option value="">Select position</option>
+                                    {vm.playerPositions.map((position) => (
+                                        <option key={position} value={position}>{position}</option>
+                                    ))}
+                                </select>
                                 {vm.errors.newPlayerPosition && <p style={{ color: 'red' }}>{vm.errors.newPlayerPosition}</p>}
                                 <input
                                     type="number"
