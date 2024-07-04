@@ -1,3 +1,5 @@
+import React, { useRef } from 'react';
+import { ChromePicker } from 'react-color';
 import { useSoccerTeamListsViewModel } from '../viewmodels/TeamListsViewModel';
 import AddPlayerIcon from '../assets/add-user.png'
 import DeleteListIcon from '../assets/delete-list.png'
@@ -10,11 +12,12 @@ import AddListIcon from '../assets/add.png'
 import HeartIcon from '../assets/heart.png'
 import ImportIcon from '../assets/import.png'
 import ExportIcon from '../assets/export.png'
-import React, { useRef } from 'react';
+import ColorWheelIcon from '../assets/color-wheel.png'
 
 export function SoccerTeamLists() {
     const vm = useSoccerTeamListsViewModel();
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [colorPickerVisible, setColorPickerVisible] = React.useState<number | null>(null);
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>, listIndex: number, playerIndex: number) => {
         e.dataTransfer.setData('text/plain', JSON.stringify({ listIndex, playerIndex }));
     };
@@ -83,7 +86,9 @@ export function SoccerTeamLists() {
                     <div className="new-list"
                         key={listIndex}
                         onDragOver={handleDragOver}
-                        onDrop={(e) => handleDrop(e, listIndex)}>
+                        onDrop={(e) => handleDrop(e, listIndex)}
+                        style={{ backgroundColor: list.backgroundColor }}
+                    >
                         {vm.renameListIndex === listIndex ? (
                             <form className='list-name-form' onSubmit={(e) => { e.preventDefault(); vm.submitRenameList(); }}>
                                 <input
@@ -101,6 +106,16 @@ export function SoccerTeamLists() {
                             </form>
                         ) : (
                             <div className="list-header">
+                                <button onClick={() => setColorPickerVisible(listIndex)}><img src={ColorWheelIcon} /></button>
+                                {colorPickerVisible === listIndex && (
+                                    <div style={{ position: 'absolute', zIndex: 2 }}>
+                                        <ChromePicker
+                                            color={list.backgroundColor}
+                                            onChange={(color) => vm.updateListBackgroundColor(listIndex, color.hex)}
+                                        />
+                                        <button onClick={() => setColorPickerVisible(null)}><img src={CancelIcon} /></button>
+                                    </div>
+                                )}
                                 <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
                                     <img src={EditIcon} />
                                 </button>

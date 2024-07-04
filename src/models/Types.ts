@@ -7,4 +7,5 @@ export interface Player {
 export interface TeamList {
     name: string
     players: Player[]
+    backgroundColor: string
 }

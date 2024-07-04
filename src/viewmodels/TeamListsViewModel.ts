@@ -162,7 +162,10 @@ export function useSoccerTeamListsViewModel() {
 
     const addList = () => {
         if (validateField('newListName', newListName)) {
-            setLists([...lists, { name: newListName, players: [] }])
+            setLists([
+                ...lists,
+                { name: newListName, players: [], backgroundColor: '#ffffff' },
+            ])
             setNewListName('')
         }
     }
@@ -273,6 +276,12 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
+    const updateListBackgroundColor = (listIndex: number, color: string) => {
+        const updatedLists = [...lists]
+        updatedLists[listIndex].backgroundColor = color
+        setLists(updatedLists)
+    }
+
     const deletePlayer = (listIndex: number, playerIndex: number) => {
         const updatedLists = [...lists]
         updatedLists[listIndex].players.splice(playerIndex, 1)
@@ -343,5 +352,6 @@ export function useSoccerTeamListsViewModel() {
         importLists,
         playerPositions: PLAYER_POSITIONS,
         getPlayerCategory,
+        updateListBackgroundColor,
     }
 }

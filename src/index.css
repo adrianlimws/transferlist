@@ -89,6 +89,7 @@ button:focus-visible {
 }
 
 .new-list {
+    position: relative;
     margin: 0.5rem;
     padding: 0.6rem 1rem;
     border-radius: 1rem;
@@ -111,14 +112,14 @@ button:focus-visible {
 
 .list-title {
     margin: 0 2rem 0 1rem;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
     border-bottom: 1px solid;
 }
 
@@ -154,7 +155,8 @@ button:focus-visible {
 }
 
 .player-info {
-    box-shadow: -2px -1px 5px 2px #e4e4e4;
+    box-shadow: -2px 2px 2px 1px #c2c2c2;
+    background-color: #ececec;
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
