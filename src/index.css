@@ -116,14 +116,13 @@ button:focus-visible {
     background: #fff;
     border-radius: 0 5px 5px 0;
     padding: 0 10px 0px 0;
+    border: 2px solid #000;
 }
 
 .list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 2px;
-    border-bottom: 1px solid;
 }
 
 .list-buttons {
@@ -133,6 +132,7 @@ button:focus-visible {
 
 .list-buttons button {
     padding: 0.2em 0.5em;
+    background-color: transparent;
 }
 
 .drag-over {
@@ -146,11 +146,12 @@ button:focus-visible {
 }
 
 .player-count {
-    color: #ffffff;
-    background-color: #646cff;
-    padding: 5px;
-    margin-right: 5px;
-    border-radius: 5px 5px 0 0;
+    color: #000;
+    background-color: #ffffff;
+    padding: 3px;
+    margin-right: 8px;
+    border-radius: 5px;
+    border: 2px solid #000;
 }
 
 .dragging {
@@ -222,6 +223,6 @@ button:focus-visible {
         color: #747bff;
     }
     button {
-        background-color: #f9f9f9;
+        background-color: transparent;
     }
 }
