@@ -253,7 +253,7 @@ export function SoccerTeamLists() {
 
             <div className='footer'>
                 <p>
-                    Transferlist v1.0.12 by <a href='https://github.com/adrianlimws' target='_blank'>Adr1an</a>
+                    Transferlist v1.1.0 by <a href='https://github.com/adrianlimws' target='_blank'>Adr1an</a>
                     |
                     <a href="https://buymeacoffee.com/adrianlimwk" target='_blank'><img src={HeartIcon} /> Buy me a pizza <img src={HeartIcon} /> </a>
                     |
