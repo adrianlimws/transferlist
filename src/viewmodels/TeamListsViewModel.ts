@@ -291,6 +291,16 @@ export function useSoccerTeamListsViewModel() {
         setRenameListName('')
     }
 
+    const getPlayerCategory = (position: string): string => {
+        if (position === 'GK') return 'goalkeeper'
+        if (['RB', 'LB', 'RCB', 'LCB', 'CB'].includes(position))
+            return 'defender'
+        if (['DM', 'BBM', 'CM', 'AM'].includes(position)) return 'midfielder'
+        if (['RW', 'LW', 'IF', 'F9'].includes(position)) return 'attacker'
+        if (['TM', 'CF', 'ST'].includes(position)) return 'striker'
+        return 'unknown'
+    }
+
     return {
         lists,
         newListName,
@@ -332,5 +342,6 @@ export function useSoccerTeamListsViewModel() {
         exportLists,
         importLists,
         playerPositions: PLAYER_POSITIONS,
+        getPlayerCategory,
     }
 }

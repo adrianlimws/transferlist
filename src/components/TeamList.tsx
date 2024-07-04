@@ -104,8 +104,9 @@ export function SoccerTeamLists() {
                                 <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
                                     <img src={EditIcon} />
                                 </button>
-                                <h2 className='list-title'>{list.name}
+                                <h2 className='list-title'>
                                     <span className="player-count">{list.players.length}</span>
+                                    {list.name}
                                 </h2>
 
                                 <div className="list-buttons">
@@ -162,7 +163,9 @@ export function SoccerTeamLists() {
                                     ) : (
 
                                         <div className="player-info">
-                                            <span className='player-position'>{player.position} </span>
+                                            <span className={`player-position ${vm.getPlayerCategory(player.position)}`}>
+                                                {player.position}
+                                            </span>
                                             <div className="edit-player-btn">
                                                 <button className='btn-delete-player' onClick={() => {
                                                     if (window.confirm('Are you sure you want to delete this player?')) {
