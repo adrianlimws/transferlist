@@ -83,13 +83,16 @@ export function useSoccerTeamListsViewModel() {
     }
 
     const saveLists = (listsToSave: TeamList[]) => {
-        localStorage.setItem('soccerTeamLists', JSON.stringify(listsToSave))
+        window.localStorage.setItem(
+            'soccerTeamLists',
+            JSON.stringify(listsToSave)
+        )
     }
 
     useEffect(() => {
         loadExchangeRates()
 
-        const savedLists = localStorage.getItem('soccerTeamLists')
+        const savedLists = window.localStorage.getItem('soccerTeamLists')
         if (savedLists) {
             const parsedSavedLists = JSON.parse(savedLists)
             if (JSON.stringify(parsedSavedLists) !== JSON.stringify(lists)) {
@@ -112,8 +115,8 @@ export function useSoccerTeamListsViewModel() {
     }, [])
 
     const loadExchangeRates = async () => {
-        const storedRates = localStorage.getItem(EXCHANGE_RATES_KEY)
-        const storedTimestamp = localStorage.getItem(
+        const storedRates = window.localStorage.getItem(EXCHANGE_RATES_KEY)
+        const storedTimestamp = window.localStorage.getItem(
             EXCHANGE_RATES_TIMESTAMP_KEY
         )
 
@@ -135,8 +138,11 @@ export function useSoccerTeamListsViewModel() {
             )
             const rates = response.data.eur
             setExchangeRates(rates)
-            localStorage.setItem(EXCHANGE_RATES_KEY, JSON.stringify(rates))
-            localStorage.setItem(
+            window.localStorage.setItem(
+                EXCHANGE_RATES_KEY,
+                JSON.stringify(rates)
+            )
+            window.localStorage.setItem(
                 EXCHANGE_RATES_TIMESTAMP_KEY,
                 Date.now().toString()
             )
