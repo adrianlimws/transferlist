@@ -69,17 +69,46 @@ export function useSoccerTeamListsViewModel() {
                 try {
                     const importedLists = JSON.parse(e.target?.result as string)
                     setLists(importedLists)
+                    saveLists(importedLists) // Save to localStorage
                 } catch (error) {
                     console.error('Error parsing imported file:', error)
-                    // You might want to show an error message to the user here
                 }
             }
             reader.readAsText(file)
         }
     }
 
+    const clearLocalStorage = () => {
+        localStorage.removeItem('soccerTeamLists')
+    }
+
+    const saveLists = (listsToSave: TeamList[]) => {
+        localStorage.setItem('soccerTeamLists', JSON.stringify(listsToSave))
+    }
+
     useEffect(() => {
         loadExchangeRates()
+
+        const savedLists = localStorage.getItem('soccerTeamLists')
+        if (savedLists) {
+            const parsedSavedLists = JSON.parse(savedLists)
+            if (JSON.stringify(parsedSavedLists) !== JSON.stringify(lists)) {
+                // Data mismatch - you could prompt the user here
+                if (
+                    window.confirm(
+                        'There is existing data in your browser localStorage. Would you like to load it?'
+                    )
+                ) {
+                    setLists(parsedSavedLists)
+                } else {
+                    // User chose not to load - overwrite localStorage with current state
+                    saveLists(lists)
+                }
+            }
+        } else {
+            // No data in localStorage - save current state
+            saveLists(lists)
+        }
     }, [])
 
     const loadExchangeRates = async () => {
@@ -162,10 +191,12 @@ export function useSoccerTeamListsViewModel() {
 
     const addList = () => {
         if (validateField('newListName', newListName)) {
-            setLists([
+            const updatedLists = [
                 ...lists,
                 { name: newListName, players: [], backgroundColor: '#ffffff' },
-            ])
+            ]
+            setLists(updatedLists)
+            saveLists(updatedLists)
             setNewListName('')
         }
     }
