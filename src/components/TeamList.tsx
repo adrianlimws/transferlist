@@ -12,6 +12,7 @@ import AddListIcon from '../assets/add.png'
 import HeartIcon from '../assets/heart.png'
 import ImportIcon from '../assets/import.png'
 import ExportIcon from '../assets/export.png'
+import CheckboxIcon from '../assets/checkbox.png'
 import ColorWheelIcon from '../assets/color-wheel.png'
 
 export function SoccerTeamLists() {
@@ -113,7 +114,7 @@ export function SoccerTeamLists() {
                                             color={list.backgroundColor}
                                             onChange={(color) => vm.updateListBackgroundColor(listIndex, color.hex)}
                                         />
-                                        <button onClick={() => setColorPickerVisible(null)}><img src={CancelIcon} /></button>
+                                        <button onClick={() => setColorPickerVisible(null)}><img src={CheckboxIcon} /></button>
                                     </div>
                                 )}
                                 <button className='btn-edit' onClick={() => vm.startRenameList(listIndex)}>
