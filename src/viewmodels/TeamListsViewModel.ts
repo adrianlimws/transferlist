@@ -78,9 +78,9 @@ export function useSoccerTeamListsViewModel() {
         }
     }
 
-    const clearLocalStorage = () => {
-        localStorage.removeItem('soccerTeamLists')
-    }
+    // const clearLocalStorage = () => {
+    //     window.localStorage.removeItem('soccerTeamLists')
+    // }
 
     const saveLists = (listsToSave: TeamList[]) => {
         window.localStorage.setItem(
