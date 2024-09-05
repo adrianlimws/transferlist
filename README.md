@@ -2,7 +2,7 @@
 
 ## Problem
 
-At [UPTV](https://www.youtube.com/@UnitedPeoplesTV) during transfer window in the english premier league, there are fan based driven community looking to organise their own player transfers for their supported teams by following the current market trends/rumors on target players.
+During summer transfers window in the english premier league, fan based driven community find the need to organise player transfers by following the current market trends/rumors on target players. As part of the [UPTV](https://www.youtube.com/@UnitedPeoplesTV) the community scouts likes to keep up to date on potential target market value/transfer fees but do not have a simple application that facilitate such a task.
 
 ## Solution
 
